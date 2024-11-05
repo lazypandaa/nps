@@ -1,0 +1,33 @@
+Fast Ethernet Port Configuration
+
+en
+config t
+int g0/0
+ip address 10.0.0.1 255.0.0.0
+no shut
+exit
+int g0/1
+ip address 11.0.0.1 255.0.0.0
+no shut
+exit
+
+
+RIP Configuration
+
+router rip
+network 10.0.0.0
+network 11.0.0.0
+
+
+Static NAT Configuration
+
+int g0/0
+ip nat inside
+exit
+int g0/1
+ip nat outside
+exit
+ip nat inside source static 10.0.0.2
+100.100.100.100
+exit
+debug ip nat

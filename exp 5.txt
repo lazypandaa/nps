@@ -1,0 +1,60 @@
+switch -1
+en
+config t
+vlan 10
+vlan 20
+exit
+int f0/1
+switchport mode access
+switchport access vlan 10
+exit
+int f0/2
+switchport access vlan 20
+exit
+int g0/1
+switchport mode trunk
+exit
+int g0/2
+switchport mode trunk
+exit
+exit
+
+switch- 2
+en
+config t
+vlan 10
+vlan 20
+exit
+int f0/1
+switchport mode access
+switchport access vlan 10
+exit
+int f0/2
+switchport access vlan 20
+exit
+int g0/1
+switchport mode trunk
+exit
+exit
+
+
+multilayer switch
+
+en
+config t
+vlan 10
+vlan 20
+exit
+int vlan 10
+ip address 10.0.0.1 255.0.0.0
+exit
+int vlan 20
+ip address 11.0.0.1 255.0.0.0
+exit
+int g0/1
+switchport mode access
+switchport mode trunk 
+switchport trunk encapsulation dot1q
+exit
+ip routing
+exit
